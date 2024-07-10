@@ -8,15 +8,15 @@ with open("bdre/phonebook_raw.csv", encoding="utf-8") as f:
 
 # TODO 1: выполните пункты 1-3 ДЗ
 phonebook = []
-for row in contacts_list:
-  phonebook.append(((" ".join(row[:3])).split(' '))[:3] + row[-4:])
+for phone in contacts_list:
+  phonebook.append(((" ".join(phone[:3])).split(' '))[:3] + phone[-4:])
 
 phonebook2 = []
-for row in phonebook:
-  numbers = ",".join(row)
+for phone in phonebook:
+  numbers = ",".join(phone)
   regex = r"(\+7|8)\s*\(*(\d+)\)*[-|\s]*(\d+)[-|\s]*(\d+)[-|\s]*(\d+)[-|\s]*\(*(доб.)*[\s]*(\d+)*\)*"
   result = re.sub(regex, "+7(\\2)\\3-\\4-\\5 \\6 \\7", numbers)
-  if row[:2] not in [x[:2] for x in phonebook2]:
+  if phone[:2] not in [x[:2] for x in phonebook2]:
     phonebook2.append(result.split(','))
 
 # TODO 2: сохраните получившиеся данные в другой файл
